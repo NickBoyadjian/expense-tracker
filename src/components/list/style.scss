@@ -1,0 +1,42 @@
+$background: #191919;
+$text-color: rgba(255,255,255,.5);
+
+.list_container {
+	background: $background;
+	border-radius: 3px;
+	padding: 10px;
+	box-shadow: -2px 2px 4px #000;
+}
+
+.list_item {
+	border-left: 1px solid #a084ed;
+	padding: 10px 10px 20px 10px;
+	margin: 5px 0;
+	color: $text-color;
+	width: 100%;
+
+	.title {
+		margin: 0;
+		padding: 0;
+		display: inline;
+	}
+
+	.amount {
+		font-size: 12px;
+		padding: 0;
+		margin: 5px;
+		display: inline;
+		float: right;
+		font-size: 25px;
+		color: #a084ed;
+	}
+
+	.category {
+		font-size: 12px;
+		padding: 0;
+		margin: 0;
+		display: inline-block;
+		font-style: italic;
+		padding: 0 10px;
+	}
+}
