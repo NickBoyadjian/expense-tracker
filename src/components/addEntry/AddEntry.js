@@ -53,8 +53,8 @@ class AddEntry extends React.Component {
 			          />
 	          	</div>
 	          	<div className="column">
-	          		<label class="label">Category</label>
-		          	<div class="select">
+	          		<label className="label">Category</label>
+		          	<div className="select">
 								  <select>
 								    <option>Housing</option>
 								    <option>Transportation</option>

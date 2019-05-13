@@ -1,70 +1,59 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute'
+import app from './base'
 
-import List from './components/list/List'
 import AddEntry from './components/addEntry/AddEntry'
+import SignUp from './components/signup/SignUp'
+
+import './index.scss'
 
 class App extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      purchases: [
-        {
-          id: 1,
-          title: "Movie Tickets",
-          amount: 25.0,
-          catagory: "Leasure"
-        },
-        {
-          id: 2,
-          title: "Lunch",
-          amount: 25.0,
-          catagory: "Food"
-        },
-        {
-          id: 3,
-          title: "Gas",
-          amount: 25.0,
-          catagory: "Necesities"
-        },
-        {
-          id: 4,
-          title: "Movie Tickets",
-          amount: 25.0,
-          catagory: "Leasure"
-        },
-        {
-          id: 5,
-          title: "Lunch",
-          amount: 25.0,
-          catagory: "Food"
-        },
-        {
-          id: 6,
-          title: "Gas",
-          amount: 25.0,
-          catagory: "Necesities"
-        },
-      ],
+  state = { 
+    loading: true, 
+    authenticated: false, 
+    user: null 
+  };
 
-    };
-    //this.handleClick = this.handleClick.bind(this);
-   }
-
+  componentWillMount() {
+  app.auth().onAuthStateChanged(user => {
+    if (user) {
+      this.setState({
+        authenticated: true,
+        currentUser: user,
+        loading: false
+      });
+      console.log(this.state)
+    } else {
+      this.setState({
+        authenticated: false,
+        currentUser: null,
+        loading: false
+      });
+    }
+  });
+}
 
   render() {
+    const { authenticated, loading } = this.state;
+
+    if (loading) {
+      return <p>Loading..</p>;
+    }
+
     return (
-      <div className="App">
-        <h1 className="title">Expense Tracker</h1>
-        <div className="columns">
-          <div className="column is-two-thirds">
-            <AddEntry />
-            <List purchases={this.state.purchases}/>
-          </div>
-          <div className="column">
-            <List purchases={this.state.purchases}/>
-          </div>
+      <Router>
+        <div>
+          <PrivateRoute
+            exact
+            path="/"
+            component={AddEntry}
+            authenticated={authenticated}
+          />
+          <Route exact path="/login" component={SignUp} />
+          <Route exact path="/signup" component={SignUp} />
         </div>
-      </div>
+      </Router>
     );
   }
 }

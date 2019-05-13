@@ -1,0 +1,36 @@
+.App {
+	margin-top: 100px;
+}
+
+.material {
+	padding: 25px;
+
+	.control {
+		margin: 10px 0;
+	}
+
+	.input {
+		color: white;
+		background: #101010;
+		border: none;
+		box-shadow: inset -2px 2px 4px #000;
+	}
+
+	.input::placeholder {
+		color: #aaaaaa;
+	}
+
+	.button {
+		position: relative;
+		display: block;
+		margin: 25px auto 0;
+	}
+
+	.error {
+		color: red;
+	}
+}
+
+.App {
+	width: 700px;
+}
