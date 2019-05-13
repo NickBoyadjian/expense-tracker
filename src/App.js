@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute'
 import app from './base'
 
-import AddEntry from './components/addEntry/AddEntry'
+import Dashboard from './components/dashboard/Dashboard'
 import SignUp from './components/signup/SignUp'
+import SignIn from './components/signin/SignIn'
 
 import './index.scss'
 
@@ -47,10 +48,10 @@ class App extends React.Component {
           <PrivateRoute
             exact
             path="/"
-            component={AddEntry}
             authenticated={authenticated}
+            component={Dashboard}
           />
-          <Route exact path="/login" component={SignUp} />
+          <Route exact path="/login" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
         </div>
       </Router>

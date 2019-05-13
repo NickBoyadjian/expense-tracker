@@ -1,0 +1,17 @@
+$background: #191919;
+$accent: #a084ed;
+
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	background: $background;
+	padding: 10px;
+	border: none;
+	box-shadow: -2px 2px 4px #000;
+
+	.button {
+		background: $accent;
+	}
+}
