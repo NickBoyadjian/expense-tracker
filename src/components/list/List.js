@@ -5,6 +5,7 @@ import './style.scss';
 const List = (props) => {
 	return (
 		<div className="material">
+			<h1 className="material-header">Recent Expenses...</h1>
 			{props.purchases.map(purchase => <ListItem data={purchase} key={purchase.id}/>)}
 		</div>
 	)

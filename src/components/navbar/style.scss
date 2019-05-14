@@ -11,6 +11,10 @@ $accent: #a084ed;
 	border: none;
 	box-shadow: -2px 2px 4px #000;
 
+	.title {
+		color: $accent;
+	}
+
 	.button {
 		background: $accent;
 	}

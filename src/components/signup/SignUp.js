@@ -98,7 +98,7 @@ class SignUpPage extends React.Component {
 
 					  <p className="error">{this.state.error}</p>
 
-					  <p>already have an account? <Link to="/signin">sign in</Link></p>
+					  <p>already have an account? <Link to="/login">sign in</Link></p>
 
 					  <input className="button" type="Submit" value="Create Account" onChange={() => {}}/>
 

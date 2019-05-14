@@ -24,7 +24,6 @@ class App extends React.Component {
         currentUser: user,
         loading: false
       });
-      console.log(this.state)
     } else {
       this.setState({
         authenticated: false,

@@ -5,7 +5,7 @@ $accent: #a084ed;
 
 .App {
 	margin: 25px auto 0 auto;
-	width: 1200px;
+	width: 70vw;
 
 	.title {
 		font-size: 25px;
@@ -17,6 +17,7 @@ $accent: #a084ed;
 	border-radius: 3px;
 	padding: 10px;
 	box-shadow: inset -2px 2px 4px #000;
+	margin: 0 auto;
 
 	.button {
 		background: $accent;

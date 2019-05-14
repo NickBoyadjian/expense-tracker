@@ -29,7 +29,7 @@ class AddEntry extends React.Component {
 
 	render() {
 		return(
-			<div className="add-entry-container">
+			<div className="add-entry-container material">
 				 <form onSubmit={this.handleSubmit.bind(this)}>
 	        <label>
 	          <h1 className="add-header">Add New Expense:</h1>
