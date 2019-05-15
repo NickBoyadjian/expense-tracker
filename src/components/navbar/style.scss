@@ -18,3 +18,37 @@
 		background: $accent;
 	}
 }
+
+.hamburger-menu-container{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 10;
+	top: 0;
+	right: 0;
+	background: $background;
+	transition: right .5s;
+
+	.close-menu {
+		float: right;
+		padding: 15px;
+		font-size: 33px;
+		color: $red;
+	}
+
+	.sign-out-container {
+		position: absolute;
+		bottom: 0;
+
+		.sign-out-btn {
+			width: 100vw;
+			border-radius: 0;
+			background: $red;
+			border: none;
+			color: #fff;
+			padding: 15px;
+			margin: 0;
+			font-size: 25px;
+		}
+	}
+}

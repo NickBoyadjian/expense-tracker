@@ -68,7 +68,46 @@
 	}
 
 	.delete-button {
-		background: #f73b3b;
+		background: $red;
 	}
 }
 
+@media only screen and (max-width: 2000px) {
+	.list_item {
+		.title {
+			font-size: 15px;
+		}
+
+		.category {
+			font-size: 10px;
+		}
+
+		.right_side_container {
+				padding: 2px 0 0 0;
+				margin: 0;
+				display: inline;
+				float: right;
+				font-size: 20px;
+
+				.confirm-delete {
+					padding: 0 3px;
+				}
+
+				.delete-icon {
+					font-size: 20px;
+					padding: 5px ;
+					color: $text-color;
+				}
+
+				.mbutton {
+					margin: 0 2px;
+					padding: 5px;
+					border-radius: 3px;
+					color: #fff;
+					font-size: 10px;
+				}
+
+			}
+
+	}
+}
