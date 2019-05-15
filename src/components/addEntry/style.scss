@@ -1,5 +1,4 @@
-$background: #191919;
-$text-color: rgba(255,255,255,.5);
+@import "../../variables";
 
 .add-entry-container {
 	margin-bottom: 40px;
@@ -9,7 +8,7 @@ $text-color: rgba(255,255,255,.5);
 	}
 
 	.submit-btn {
-		background: #a084ed;
+		background: $accent;
 		margin: 15px 0;
 	}
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import app from '../../base'
 
 import './style.scss'
 
@@ -6,25 +7,27 @@ class AddEntry extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-    	title: '',
-    	category: '',
+    	title: "",
+    	category: "Entertainment",
     	amount: 0,
     };
   }
 
-  handleTitleChange(event) {
-    this.setState({title: event.target.value});
-  }
-  handleCategoryChange(event) {
-    this.setState({category: event.target.value});
-  }
+  handleTitleChange = e => { this.setState({title: e.target.value}) }
+  handleCategoryChange = e => { this.setState({category: e.target.value}) }
+  handleAmountChange = e => { this.setState({amount: e.target.value}) }
 
-  handleAmountChange(event) {
-    this.setState({amount: event.target.value});
-  }
+  handleSubmit(event) { 
+  	var date = new Date();
+  	event.preventDefault(); 
+  	this.props.db.collection("expenses").add({
+  		user_id: this.props.user_id,
+  		title: this.state.title,
+  		amount: this.state.amount,
+  		category: this.state.category,
+  		created: date.getTime()
+  	})
 
-  handleSubmit(event) {
-    event.preventDefault();
   }
 
 	render() {
@@ -33,9 +36,9 @@ class AddEntry extends React.Component {
 				 <form onSubmit={this.handleSubmit.bind(this)}>
 	        <label>
 	          <h1 className="add-header">Add New Expense:</h1>
-	          <label class="label">Title</label>
+	          <label className="label">Title</label>
 	          <input 
-	          	className="input is-rounded" 
+	          	className="input" 
 	          	type="text" 
 	          	placeholder="Title"
 	          	onChange={this.handleTitleChange.bind(this)} 
@@ -43,11 +46,11 @@ class AddEntry extends React.Component {
 	          />
 	          <div className="columns">
 							<div className="column">
-		          	<label class="label">Amount</label>
+		          	<label className="label">Amount</label>
 			          <input 
-			          	className="input is-rounded" 
-			          	type="text" 
-			          	placeholder="Title"
+			          	className="input" 
+			          	type="number" 
+			          	placeholder="Amount"
 			          	onChange={this.handleAmountChange.bind(this)} 
 			          	value={this.state.value}
 			          />
@@ -55,21 +58,21 @@ class AddEntry extends React.Component {
 	          	<div className="column">
 	          		<label className="label">Category</label>
 		          	<div className="select">
-								  <select>
-								    <option>Housing</option>
-								    <option>Transportation</option>
-								    <option>Food</option>
-								    <option>Utilities</option>
-								    <option>Clothing</option>
-								    <option>Medical</option>
-								    <option>Insurance</option>
-								    <option>Supplies</option>
-								    <option>Personal</option>
-								    <option>Debt</option>
-								    <option>Education</option>
-								    <option>Gifts</option>
-								    <option>Entertainment</option>
-								    <option>Other</option>
+								  <select value={this.state.category} onChange={this.handleCategoryChange.bind(this)}>
+								    <option value="Entertainment">Entertainment</option>
+								    <option value="Housing">Housing</option>
+								    <option value="Transportation">Transportation</option>
+								    <option value="Food">Food</option>
+								    <option value="Utilities">Utilities</option>
+								    <option value="Clothing">Clothing</option>
+								    <option value="Medical">Medical</option>
+								    <option value="Insurance">Insurance</option>
+								    <option value="Supplies">Supplies</option>
+								    <option value="Personal">Personal</option>
+								    <option value="Debt">Debt</option>
+								    <option value="Education">Education</option>
+								    <option value="Gifts">Gifts</option>
+								    <option value="Other">Other</option>
 								  </select>
 								</div>
 	          	</div>

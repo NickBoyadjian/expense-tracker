@@ -41,7 +41,7 @@ class SignUpPage extends React.Component {
 	render() {
 		return(
 			<div className="App">
-				<div className="material">
+				<div className="material auth-form">
 					<h1 className="title">Create Account</h1>
 					<form className="field" onSubmit={this.onSubmit.bind(this)}>
 

@@ -1,7 +1,5 @@
 @import "node_modules/bulmaswatch/cyborg/bulmaswatch";
-
-$background: #191919;
-$accent: #a084ed;
+@import "./variables";
 
 .App {
 	margin: 25px auto 0 auto;
@@ -23,4 +21,9 @@ $accent: #a084ed;
 		background: $accent;
 		box-shadow: -2px 2px 4px #000;
 	}
+}
+
+.auth-form {
+	width: 700px;
+	margin: 0 auto;
 }

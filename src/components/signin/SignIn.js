@@ -36,7 +36,7 @@ class SignInPage extends React.Component {
 	render() {
 		return(
 			<div className="App">
-				<div className="material">
+				<div className="material auth-form">
 					<h1 className="title">Sign in</h1>
 					<form className="field" onSubmit={this.onSubmit.bind(this)}>
 

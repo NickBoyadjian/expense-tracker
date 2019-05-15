@@ -1,3 +1,4 @@
+// imports
 import React from 'react';
 import app from '../../base';
 
@@ -10,27 +11,33 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+    	user_id: undefined,
+    	db: undefined,
       data: []
     };
 	}
 
 	getData = _ => {
-		const user_id = app.auth().Qb.O
-		const db = app.firestore();
-		const data = db.collection("expenses").where("user_id", "==", user_id)
+		const data = this.state.db
+			.collection("expenses")
+			.where("user_id", "==", this.state.user_id)
+			.limit(5)
 
-		data.get()
-			.then(expenses => {
-				let res = []
-				expenses.forEach(doc => {
-					res.push(doc.data())
-				})
-				this.setState({data: res})
+		data.onSnapshot(expenses => {
+			let res = []
+			expenses.forEach(doc => {
+				res.push({...doc.data(), ...{id: doc.id}})
 			})
+			this.setState({data: this.orderData(res)})
+		})
 	}
 
-	componentDidMount = _ => {
-		this.getData()
+	orderData = list => list.sort((a, b) => a.created < b.created)
+
+	componentDidMount = async _ => { 
+		await this.setState({user_id: app.auth().Qb.O})
+		await this.setState({db: app.firestore()}) 
+		this.getData();
 	}
 
 	render() {
@@ -39,7 +46,7 @@ class Dashboard extends React.Component {
 				<Navbar />
 				<div className="columns">
 					<div className="column is-two-thirds">
-						<AddEntry />
+						<AddEntry user_id={this.state.user_id} db={this.state.db} />
 						<List purchases={this.state.data}/>
 					</div>
 					<div className="column">
