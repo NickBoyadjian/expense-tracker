@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
 				<div className="columns">
 					<div className="column is-two-thirds">
 						<AddEntry user_id={this.state.user_id} db={this.state.db} />
-						<List purchases={this.state.data}/>
+						<List purchases={this.state.data} db={this.state.db} />
 					</div>
 					<div className="column">
 						<div className="material"></div>

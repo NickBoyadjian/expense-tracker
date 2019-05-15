@@ -18,7 +18,7 @@
 		display: inline;
 	}
 
-	.amount {
+	.right_side_container {
 		font-size: 12px;
 		padding: 0;
 		margin: 5px;
@@ -42,3 +42,33 @@
 	margin: 0 auto;
 	width: 150px;
 }
+
+.delete-icon {
+	display: inline;
+	float: right;
+	font-size: 25px;
+	padding: 7px 10px 0;
+	color: $text-color;
+}
+
+.confirm-delete {
+	float: right;
+	padding: 0 10px;
+	display: inline-block;
+
+	.mbutton {
+		border: none;
+		box-shadow: -2px 2px 4px #000;
+		margin: 0 5px;
+		padding: 5px;
+		border-radius: 3px;
+		color: #fff;
+		background: $text-color;
+		font-size: 15px;
+	}
+
+	.delete-button {
+		background: #f73b3b;
+	}
+}
+
