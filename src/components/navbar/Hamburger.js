@@ -9,7 +9,7 @@ class Hamburger extends React.Component {
 
 	render() {
 		return (
-			<div className="hamburger-menu-container" style={{right: this.props.isVisible ? 0 : '-100vw'}}>
+			<div className="hamburger-menu-container" style={{right: this.props.isVisible ? '-50vw' : '-100vw'}}>
 				<div className="header">
 					<i onClick={this.props.toggleMenu} className="fa fa-times close-menu"></i>
 				</div>
