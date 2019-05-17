@@ -1,5 +1,6 @@
 import React from 'react';
-import app from '../../base'
+import app from '../../base';
+import { Context } from '../../context';
 
 import './style.scss'
 
@@ -17,17 +18,9 @@ class AddEntry extends React.Component {
   handleCategoryChange = e => { this.setState({category: e.target.value}) }
   handleAmountChange = e => { this.setState({amount: e.target.value}) }
 
-  handleSubmit(event) { 
-  	var date = new Date();
-  	event.preventDefault(); 
-  	this.props.db.collection("expenses").add({
-  		user_id: this.props.user_id,
-  		title: this.state.title,
-  		amount: this.state.amount,
-  		category: this.state.category,
-  		created: date.getTime()
-  	})
-
+  handleSubmit = e => { 
+  	e.preventDefault();
+  	this.context.state.addExpense(this.state.title, this.state.amount, this.state.category)
   }
 
 	render() {
@@ -35,7 +28,7 @@ class AddEntry extends React.Component {
 			<div className="add-entry-container material">
 				 <form onSubmit={this.handleSubmit.bind(this)}>
 	        <label>
-	          <h1 className="add-header">Add New Expense:</h1>
+	          <h1 className="add-header">Add New Expense</h1>
 	          <label className="label">Title</label>
 	          <input 
 	          	className="input" 
@@ -84,5 +77,6 @@ class AddEntry extends React.Component {
 		)
 	}
 }
+AddEntry.contextType = Context
 
 export default AddEntry;

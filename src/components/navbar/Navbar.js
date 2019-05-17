@@ -1,7 +1,8 @@
 import React from 'react';
 import app from '../../base';
-import HamburgerMenu from './Hamburger'
-import './style.scss'
+import HamburgerMenu from './Hamburger';
+import { Context } from '../../context'
+import './style.scss';
 
 class Navbar extends React.Component {
 	constructor(props) {
@@ -24,8 +25,6 @@ class Navbar extends React.Component {
 		this.setState({isVisible: !this.state.isVisible})
 		console.log(this.state.isVisible)
 	}
-
-	componentDidMount = _ => { this.getUser() }
 
 	getUser = _ => { this.setState({currentUser: app.auth().currentUser.providerData[0].email}) }
 
@@ -53,7 +52,11 @@ class Navbar extends React.Component {
 			  <div id="navbarBasicExample" className="navbar-menu">
 			    <div className="navbar-start">
 			      <div className="navbar-item" href="#">
-			        {this.state.currentUser}
+			        <Context.Consumer>
+			        	{(context) => (
+			        		<h1>{context.state.email}</h1>
+			        	)}
+			        </Context.Consumer>
 			      </div>
 
 			    </div>
@@ -72,7 +75,7 @@ class Navbar extends React.Component {
 		)
 	}
 }
-
+Navbar.contextType = Context
 
 
 export default Navbar;

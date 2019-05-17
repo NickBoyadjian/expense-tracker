@@ -1,37 +1,41 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './style.scss';
-import emptyBox from '../../images/empty-box.png'
+import { Context } from '../../context';
+import emptyBox from '../../images/empty-box.png';
 
-const List = (props) => {
-	if (props.purchases.length == 0) {
+class List extends Component {
+	render() {
+		if (this.context.state.expenses.length == 0) {
+			return (
+				<div className="material">
+					<div className="empty-box">
+						<h1>Wow... Such Empty</h1>
+						<img className="" src={emptyBox} />
+					</div>
+				</div>
+			)
+		}
 		return (
 			<div className="material">
-				<div className="empty-box">
-					<h1>Wow... Such Empty</h1>
-					<img className="" src={emptyBox} />
-				</div>
+				<h1 className="material-header">Recent Expenses...</h1>
+	        <Context.Consumer>
+	        	{(context) => (
+	        		<h1>{context.state.expenses.map((expense) => <ListItem data={expense} key={expense.id} />)}</h1>
+	        	)}
+	        </Context.Consumer>
 			</div>
 		)
 	}
-	return (
-		<div className="material">
-			<h1 className="material-header">Recent Expenses...</h1>
-			{props.purchases.map(purchase => <ListItem data={purchase} db={props.db} key={purchase.id}/>)}
-		</div>
-	)
 }
+List.contextType = Context
 
-class ListItem extends React.Component {
+class ListItem extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
 			showConfirm: false
 		}
-	}
-
-	deleteListItem = _ => {
-		this.props.db.collection("expenses").doc(this.props.data.id).delete()
 	}
 
 	initiateDelete = _ => {
@@ -56,7 +60,7 @@ class ListItem extends React.Component {
 								"display": this.state.showConfirm ? "inline" : "none"
 							}}>
 							<a 
-								onClick={this.deleteListItem}
+								onClick={() => {this.context.state.deleteExpense(this.props.data.id)}}
 								className="mbutton delete-button">
 								Delete
 							</a>
@@ -71,5 +75,6 @@ class ListItem extends React.Component {
 			)
 	}
 }
+ListItem.contextType = Context
 
 export default List;
