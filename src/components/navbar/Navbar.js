@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import app from '../../base';
 import HamburgerMenu from './Hamburger';
-import { Context } from '../../context'
+import { Context } from '../../context';
 import './style.scss';
 
 class Navbar extends React.Component {
@@ -50,25 +51,38 @@ class Navbar extends React.Component {
 			  </div>
 
 			  <div id="navbarBasicExample" className="navbar-menu">
-			    <div className="navbar-start">
-			      <div className="navbar-item" href="#">
-			        <Context.Consumer>
-			        	{(context) => (
-			        		<h1>{context.state.email}</h1>
-			        	)}
-			        </Context.Consumer>
-			      </div>
-
-			    </div>
-
 			    <div className="navbar-end">
-			      <div className="navbar-item">
-			        <div className="buttons">
-			          <button className="button" onClick={this.handleLogOut.bind(this)}>
-			            <strong>Log Out</strong>
-			          </button>
+
+						<div className="navbar-item">
+			        <div className="field is-grouped">
+			          <p className="control">
+			            <Link to="/" className="button">
+			              <span className="icon">
+			                <i className="fa fa-folder-open"></i>
+			              </span>
+			              <span>
+			                Dashboard
+			              </span>
+			            </Link>
+			          </p>
 			        </div>
 			      </div>
+
+			      <div className="navbar-item">
+			        <div className="field is-grouped">
+			          <p className="control">
+			            <Link to="/settings" className="button">
+			              <span className="icon">
+			                <i className="fa fa-user"></i>
+			              </span>
+			              <span>
+			                Settings
+			              </span>
+			            </Link>
+			          </p>
+			        </div>
+			      </div>
+
 			    </div>
 			  </div>
 			</nav>
@@ -76,6 +90,7 @@ class Navbar extends React.Component {
 	}
 }
 Navbar.contextType = Context
+
 
 
 export default Navbar;

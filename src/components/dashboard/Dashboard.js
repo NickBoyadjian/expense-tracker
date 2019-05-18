@@ -7,6 +7,7 @@ import { Context } from '../../context';
 import List from '../list/List';
 import AddEntry from '../addEntry/AddEntry';
 import Navbar from '../navbar/Navbar';
+import LimitTracker from '../limitTracker/LimitTracker';
 
 class Dashboard extends React.Component {
 
@@ -15,10 +16,12 @@ class Dashboard extends React.Component {
 		this.context.getUser()
 	}
 
+
 	render() {
 		return(
 			<div className="App">
 				<Navbar />
+				<h1 className="page-title">Dashboard</h1>
 				<div className="columns">
 					<div className="column is-two-thirds">
 						<Context.Consumer>
@@ -32,7 +35,7 @@ class Dashboard extends React.Component {
 						</Context.Consumer>
 					</div>
 					<div className="column">
-						<div className="material"></div>
+						<LimitTracker />
 					</div>
 				</div>
 			</div>

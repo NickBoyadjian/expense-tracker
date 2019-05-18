@@ -6,9 +6,16 @@
 	left: 0;
 	width: 100vw;
 	background: $background;
-	padding: 10px;
 	border: none;
 	box-shadow: -2px 2px 4px #000;
+
+	.navbar-end {
+		padding-right: 20px; 
+	}
+
+	.navbar-item {
+		padding: 15px;
+	}
 
 	.title {
 		color: $accent;
@@ -18,6 +25,10 @@
 		background: $accent;
 	}
 }
+
+
+
+
 
 .hamburger-menu-container{
 	position: fixed;
