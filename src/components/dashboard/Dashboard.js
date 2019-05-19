@@ -12,8 +12,8 @@ import LimitTracker from '../limitTracker/LimitTracker';
 class Dashboard extends React.Component {
 
 	componentWillMount = _ => { 
-		this.context.getExpenses()
-		this.context.getUser()
+		this.context.getWeeklyExpenses();
+		this.context.getUser();
 	}
 
 

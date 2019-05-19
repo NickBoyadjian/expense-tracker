@@ -32,6 +32,7 @@ class Provider extends Component {
 		})
 	}
 
+	// GET LAST 5
 	getExpenses = _ => {
 		let data = app.firestore()
 			.collection("expenses")
@@ -44,6 +45,26 @@ class Provider extends Component {
 				res.push({...doc.data(), ...{id: doc.id}})
 			})
 			this.setState({ expenses: res.sort((a, b) => a.created < b.created) });
+		})
+	}
+
+	// GET FROM PAST 7 DAYS
+	getWeeklyExpenses = _ => {
+		let pastWeek = Date.now() - 604800000;
+		let spent = 0;
+		let data = app.firestore()
+			.collection("expenses")
+			.where("created", ">", pastWeek)
+			.where("user_id", "==", app.auth().Qb.O)
+
+		data.onSnapshot(expenses => {
+			let res = []
+			expenses.forEach(doc => {
+				res.push({...doc.data(), ...{id: doc.id}})
+				spent += parseInt(doc.data().amount)
+			})
+			this.setState({ expenses: res.sort((a, b) => a.created < b.created) });
+			this.setState({ spent: spent })
 		})
 	}
 
@@ -64,17 +85,21 @@ class Provider extends Component {
 
 	state = {
 		email: "test",
-		user_id: "",
+		user_id: undefined,
 		db: undefined,
 		expenses: [],
 		limit: 0,
+		spent: 0,
 		number: 0,
 		photoURL: null,
+
+
 		getUser: this.getUser,
 		getExpenses: this.getExpenses,
 		addExpense: this.addExpense,
 		deleteExpense: this.deleteExpense,
-		getUserLimit: this.getUserLimit
+		getUserLimit: this.getUserLimit,
+		getWeeklyExpenses: this.getWeeklyExpenses
 	}
 
 
@@ -85,7 +110,8 @@ class Provider extends Component {
 					state: this.state,
 					getUser: this.getUser,
 					getExpenses: this.state.getExpenses,
-					getUserLimit: this.state.getUserLimit
+					getUserLimit: this.state.getUserLimit,
+					getWeeklyExpenses: this.state.getWeeklyExpenses
 				}
 			}>
 				{this.props.children}

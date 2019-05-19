@@ -19,6 +19,7 @@ class LimitTracker extends Component {
 		        		<div className="user">
 		        		
 		        			<h1>Limit: {context.state.limit}</h1>
+		        			<h1>Spent: {context.state.spent}</h1>
 
 		        		</div>
 		        	)}

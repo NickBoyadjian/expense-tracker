@@ -1,8 +1,12 @@
 @import "../../variables";
 
 .material-header {
-	font-size: 20px;
-	margin-bottom: 15px;
+	font-size: 25px;
+}
+
+.range {
+	color: $text-color;
+	margin: 0 0 20px 0 ;
 }
 
 .list_item {

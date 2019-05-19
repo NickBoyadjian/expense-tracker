@@ -4,6 +4,13 @@ import { Context } from '../../context';
 import emptyBox from '../../images/empty-box.png';
 
 class List extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			range: "Past 7 days"
+		}
+	}
+
 	render() {
 		if (this.context.state.expenses.length == 0) {
 			return (
@@ -18,6 +25,7 @@ class List extends Component {
 		return (
 			<div className="material">
 				<h1 className="material-header">Recent Expenses...</h1>
+				<h2 className="range">{this.state.range}</h2>
 	        <Context.Consumer>
 	        	{(context) => (
 	        		<h1>{context.state.expenses.map((expense) => <ListItem data={expense} key={expense.id} />)}</h1>
