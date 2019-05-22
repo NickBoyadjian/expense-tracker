@@ -32,8 +32,18 @@ class LimitTracker extends Component {
         	{(context) => (
 						<div>
 							<CircularProgressbar 
-				    		value={this.getPercent(context.state.spent, context.state.limit)} 
-				    		text={(this.getPercent(context.state.spent, context.state.limit)) + "%"} 
+				    		value={
+				    			Number.isNaN(this.getPercent(context.state.spent, context.state.limit))
+				    			&& !isFinite(this.getPercent(context.state.spent, context.state.limit))
+				    			? 0
+				    			: this.getPercent(context.state.spent, context.state.limit)
+				    		} 
+				    		text={
+				    			Number.isNaN(this.getPercent(context.state.spent, context.state.limit))
+				    			&& !isFinite(this.getPercent(context.state.spent, context.state.limit))
+				    			? "0%" 
+				    			: this.getPercent(context.state.spent, context.state.limit) + "%"
+				    		} 
 				    		styles={buildStyles({
 						 
 						    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'

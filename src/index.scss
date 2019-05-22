@@ -1,5 +1,10 @@
 @import "node_modules/bulmaswatch/cyborg/bulmaswatch";
 @import "./variables";
+$body-background-color: #212121;
+
+html {
+	background: $body-background-color;
+}
 
 .App {
 	margin: 25px auto 0 auto;
