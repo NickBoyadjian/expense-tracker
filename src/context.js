@@ -58,7 +58,8 @@ class Provider extends Component {
 			.where("user_id", "==", app.auth().Qb.O)
 
 		data.onSnapshot(expenses => {
-			let res = []
+			let res = [];
+			let spent = 0;
 			expenses.forEach(doc => {
 				res.push({...doc.data(), ...{id: doc.id}})
 				spent += parseInt(doc.data().amount)
