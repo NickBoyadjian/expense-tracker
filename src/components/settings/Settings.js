@@ -12,8 +12,14 @@ import './style.scss';
 
 class Settings extends React.Component {
 
-	componentWillMount = _ => { 
-		this.context.getUser()
+	componentWillMount = _ => { this.context.getUser() }
+
+	logOut = async _ => {
+		try {
+		  await app.auth().signOut();
+		} catch (e) {
+			console.log(e)
+		} 
 	}
 
 
@@ -28,10 +34,10 @@ class Settings extends React.Component {
 		        		<div className="user">
 		        			<img src={context.state.photoURL} />
 		        			<h1>Email: {context.state.email}</h1>
-
 		        		</div>
 		        	)}
 		      </Context.Consumer>
+		      <button className="button" onClick={this.logOut}>Log Out</button>
 				</div>
 			</div>
 		)

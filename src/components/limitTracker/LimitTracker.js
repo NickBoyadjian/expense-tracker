@@ -13,19 +13,24 @@ class LimitTracker extends Component {
     };
   }
 
-  componentWillMount = () => {
+  componentWillMount = _ => {
   	this.context.getUserLimit();
   }
 
-  componentDidMount = () => {
+  componentDidMount = _ => {
   	console.log(this.context.state.limit)
   	this.setState({percentage: parseInt(this.context.state.spent)})
   }
 
   getPercent = (a, b) => Math.floor(a/b*100)
-
+ 
 
   render() {
+  	if(this.context.state.limit == 0) {
+  		return(
+  			<AddLimit />
+  		)
+  	}
     return (
     	<div className="material">
     		<Context.Consumer>
@@ -75,5 +80,46 @@ class LimitTracker extends Component {
   }
 }
 LimitTracker.contextType = Context;
+
+class AddLimit extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			limit: undefined
+		}
+	}
+
+	handleSubmit = e => {
+		e.preventDefault();
+		this.context.state.addUserLimit(this.state.limit);
+	}
+
+	handleAmountChange = e => { this.setState({limit: e.target.value}) }
+
+	render = _ => {
+		return (
+			<div className="material">
+				<form onSubmit={this.handleSubmit.bind(this)}>
+        <label>
+          <h1 className="set-limit-header">Set Weekly Spending Limit</h1>
+          <div className="columns">
+						<div className="column">
+		          <input 
+		          	className="input" 
+		          	type="number" 
+		          	placeholder="Limit"
+		          	onChange={this.handleAmountChange.bind(this)} 
+		          	value={this.state.limit}
+		          />
+          	</div>
+          </div>
+        </label>
+        <input className="button submit-btn" type="submit" value="Submit" />
+      	</form>
+			</div>
+		)
+	}
+}
+AddLimit.contextType = Context;
 
 export default LimitTracker;

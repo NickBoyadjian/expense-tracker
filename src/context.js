@@ -80,6 +80,13 @@ class Provider extends Component {
   	})
 	}
 
+	addUserLimit = limit => {
+		this.state.db.collection("limits").add({
+			limit: limit,
+			user_id: this.state.user_id,
+		})
+	}
+
 	deleteExpense = id => {
 		this.state.db.collection("expenses").doc(id).delete()
 	}
@@ -100,7 +107,8 @@ class Provider extends Component {
 		addExpense: this.addExpense,
 		deleteExpense: this.deleteExpense,
 		getUserLimit: this.getUserLimit,
-		getWeeklyExpenses: this.getWeeklyExpenses
+		getWeeklyExpenses: this.getWeeklyExpenses,
+		addUserLimit: this.addUserLimit
 	}
 
 
@@ -112,7 +120,8 @@ class Provider extends Component {
 					getUser: this.getUser,
 					getExpenses: this.state.getExpenses,
 					getUserLimit: this.state.getUserLimit,
-					getWeeklyExpenses: this.state.getWeeklyExpenses
+					getWeeklyExpenses: this.state.getWeeklyExpenses,
+					addUserLimit: this.state.addUserLimit
 				}
 			}>
 				{this.props.children}
