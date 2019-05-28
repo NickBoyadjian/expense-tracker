@@ -5,7 +5,7 @@ import HamburgerMenu from './Hamburger';
 import { Context } from '../../context';
 import './style.scss';
 
-class Navbar extends React.Component {
+export default class Navbar extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
@@ -22,10 +22,7 @@ class Navbar extends React.Component {
 		}
 	}
 
-	toggleMenu = _ => {
-		this.setState({isVisible: !this.state.isVisible})
-		console.log(this.state.isVisible)
-	}
+	toggleMenu = _ => { this.setState({isVisible: !this.state.isVisible}) }
 
 	getUser = _ => { this.setState({currentUser: app.auth().currentUser.providerData[0].email}) }
 
@@ -90,7 +87,3 @@ class Navbar extends React.Component {
 	}
 }
 Navbar.contextType = Context
-
-
-
-export default Navbar;

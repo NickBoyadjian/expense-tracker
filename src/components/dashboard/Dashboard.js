@@ -9,7 +9,7 @@ import AddEntry from '../addEntry/AddEntry';
 import Navbar from '../navbar/Navbar';
 import LimitTracker from '../limitTracker/LimitTracker';
 
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
 
 	componentWillMount = _ => { 
 		this.context.getWeeklyExpenses();
@@ -17,31 +17,27 @@ class Dashboard extends React.Component {
 	}
 
 
-	render() {
-		return(
-			<div className="App">
-				<Navbar />
-				<h1 className="page-title">Dashboard</h1>
-				<div className="columns">
-					<div className="column is-two-thirds">
-						<Context.Consumer>
-							{(ctx) => (
-								<div>
-									<AddEntry />
-									<List />
-								</div>
+	render = _ =>
+		<div className="App">
+			<Navbar />
+			<h1 className="page-title">Dashboard</h1>
+			<div className="columns">
+				<div className="column is-two-thirds">
+					<Context.Consumer>
+						{(ctx) => (
+							<div>
+								<AddEntry />
+								<List />
+							</div>
 
-							)}
-						</Context.Consumer>
-					</div>
-					<div className="column">
-						<LimitTracker />
-					</div>
+						)}
+					</Context.Consumer>
+				</div>
+				<div className="column">
+					<LimitTracker />
 				</div>
 			</div>
-		)
-	}
+		</div>
+	
 }
 Dashboard.contextType = Context
-
-export default Dashboard;
