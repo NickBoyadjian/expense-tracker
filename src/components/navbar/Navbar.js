@@ -33,6 +33,7 @@ export default class Navbar extends React.Component {
 					toggleMenu={this.toggleMenu} 
 					isVisible={this.state.isVisible}
 					handleLogOut={this.handleLogOut}
+					context={this.context}
 				/>
 			  <div className="navbar-brand">
 			    <div className="navbar-item">
