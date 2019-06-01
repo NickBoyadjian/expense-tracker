@@ -7,15 +7,32 @@ const Context = React.createContext();
 class Provider extends Component {
 
 	getUser = _ => { 
-		if (app.auth().currentUser.photoURL != null) {
-			this.setState({photoURL: app.auth().currentUser.photoURL})
-		} else {
-			this.setState({photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"})
-		}
 		
 		this.setState({email: app.auth().currentUser.providerData[0].email});
 		this.setState({user_id: app.auth().Qb.O});
 		this.setState({db: app.firestore()})
+
+		// handle profile pic setting
+		if (app.auth().currentUser.photoURL != null) {
+			this.setState({photoURL: app.auth().currentUser.photoURL})
+			this.setState({isGoogleUser: true})
+		} else {
+			this.getImageFromStorage()
+			this.setState({isGoogleUser: false})
+		}
+	}
+
+	getImageFromStorage = _ => {
+		// Create a Storage Ref w/ username
+		const storageRef = app.storage().ref(app.auth().Qb.O + '/profilePicture/' + "profilepic.jpg");
+
+		storageRef.getDownloadURL()
+			.then(url => {
+				this.setState({photoURL: url});
+			})
+			.catch(e => {
+				this.setState({photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"})
+			})
 	}
 
 	getUserLimit = _ => {
@@ -87,9 +104,7 @@ class Provider extends Component {
 		})
 	}
 
-	deleteExpense = id => {
-		this.state.db.collection("expenses").doc(id).delete()
-	}
+	deleteExpense = id => { this.state.db.collection("expenses").doc(id).delete() }
 
 	state = {
 		email: "test",
@@ -100,6 +115,7 @@ class Provider extends Component {
 		spent: 0,
 		number: 0,
 		photoURL: null,
+		isGoogleUser: false,
 
 
 		getUser: this.getUser,
@@ -108,7 +124,8 @@ class Provider extends Component {
 		deleteExpense: this.deleteExpense,
 		getUserLimit: this.getUserLimit,
 		getWeeklyExpenses: this.getWeeklyExpenses,
-		addUserLimit: this.addUserLimit
+		addUserLimit: this.addUserLimit,
+		getImageFromStorage: this.getImageFromStorage,
 	}
 
 
@@ -121,7 +138,8 @@ class Provider extends Component {
 					getExpenses: this.state.getExpenses,
 					getUserLimit: this.state.getUserLimit,
 					getWeeklyExpenses: this.state.getWeeklyExpenses,
-					addUserLimit: this.state.addUserLimit
+					addUserLimit: this.state.addUserLimit,
+					getImageFromStorage: this.getImageFromStorage,
 				}
 			}>
 				{this.props.children}

@@ -10,6 +10,7 @@
     "react": "^16.8.6",
     "react-circular-progressbar": "^2.0.0",
     "react-dom": "^16.8.6",
+    "react-images-upload": "^1.2.6",
     "react-scripts": "3.0.1",
     "victory": "^32.2.3"
   },
