@@ -100,7 +100,8 @@ class AddLimit extends Component {
 					<div className="column">
 	          <input 
 	          	className="input" 
-	          	type="number" 
+	          	type="number"
+	          	pattern="\d*"
 	          	placeholder="Limit"
 	          	onChange={this.handleAmountChange.bind(this)} 
 	          	value={this.state.limit}

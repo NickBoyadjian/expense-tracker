@@ -69,6 +69,7 @@ export default class Settings extends Component {
 	        				<h1 className="header">Set new weekly limit: </h1>
 			        		<input 
 			        			type="number" 
+			        			pattern="\d*"
 			        			value={this.state.limit}
 			        			onChange={this.handleUpdateLimit.bind(this)}
 			        		/>

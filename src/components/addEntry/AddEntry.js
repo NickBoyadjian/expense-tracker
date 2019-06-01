@@ -42,6 +42,7 @@ export default class AddEntry extends React.Component {
 		          <input 
 		          	className="input" 
 		          	type="number" 
+                pattern="\d*"
 		          	placeholder="Amount"
 		          	onChange={this.handleAmountChange.bind(this)} 
 		          	value={this.state.value}
