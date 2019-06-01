@@ -1,5 +1,5 @@
 // imports
-import React from 'react';
+import React, { Component } from 'react';
 import app from '../../base';
 import { Context } from '../../context';
 
@@ -11,17 +11,22 @@ import ImageUpload from './ImageUpload';
 
 import './style.scss';
 
-export default class Settings extends React.Component {
-
+export default class Settings extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showImageUpload: false,
+			limit: 0,
 		}
 	}
 
-	componentWillMount = _ => { this.context.getUser() }
+	componentWillMount = _ => { 
+		this.context.getUser(); 
+		this.context.getUserLimit()
+		this.setState({limit: this.context.state.limit}) 
+	}
 
+	hideUploadButton = _ => { this.setState({showImageUpload: false}) }
 	logOut = async _ => {
 		try {
 		  await app.auth().signOut();
@@ -30,12 +35,12 @@ export default class Settings extends React.Component {
 		} 
 	}
 
-	hideUploadButton = _ => {
-		this.setState({showImageUpload: false})
-	}
-
-	componentDidMount = _ => {
-		console.log(this.context.state.isGoogleUser)
+	handleUpdateLimit = e => {this.setState({limit: e.target.value})}
+	updateLimitInFirebase = e => {
+		let ref = this.context.state.db.collection("limits").doc(this.context.state.limit_id);
+		ref.update({
+			limit: this.state.limit
+		})
 	}
 
 
@@ -59,11 +64,25 @@ export default class Settings extends React.Component {
 			        							</button>
 			        						</div>
 	        			}
-	        			<h1>Email: {context.state.email}</h1>
+	        			<h1 className="header">Email: </h1> <h1>{context.state.email}</h1>
+	        			<div className="limit">
+	        				<h1 className="header">Set new weekly limit: </h1>
+			        		<input 
+			        			type="number" 
+			        			value={this.state.limit}
+			        			onChange={this.handleUpdateLimit.bind(this)}
+			        		/>
+			        		<button 
+			        			onClick={this.updateLimitInFirebase.bind(this)}
+			        			className="button update-btn"
+			        		>
+			        				Update
+			        		</button>
+			        	</div>
 	        		</div>
 	        	)}
 	      </Context.Consumer>
-	      <button className="button" onClick={this.logOut}>Log Out</button>
+	      <button className="button logout-btn" onClick={this.logOut}>Log Out</button>
 			</div>
 		</div>
 }

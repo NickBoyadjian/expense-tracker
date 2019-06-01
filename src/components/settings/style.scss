@@ -1,11 +1,16 @@
+.header {
+	font-size: 30px;
+}
+
 .user {
 	margin: 0 auto;
-	width: 300px;
+	width: 400px;
 	text-align: center;
 
 	img {
 		border-radius: 100%;
-		height: 300px
+		width: 350px;
+		height: 350px;
 	}
 }
 
@@ -26,5 +31,30 @@
 
 	p {
 		display: none;
+	}
+}
+
+.limit {
+	margin: 50px 0;
+
+	h1 {
+		padding: 5px 20px;
+	}
+
+	input {
+		display: inline-block;
+		height: 36px;
+	}
+
+	.update-btn {
+		display: inline-block;
+		margin: 0 10px;
+		background: #4286f4;
+	}
+}
+
+.material {
+	.logout-btn {
+		background: #f44150;
 	}
 }

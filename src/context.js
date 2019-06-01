@@ -42,10 +42,13 @@ class Provider extends Component {
 
 		data.onSnapshot(limit => {
 			let res = 0;
+			let id = undefined;
 			limit.forEach(doc => {
 				res = doc.data().limit
+				id = doc.id
 			})
 			this.setState({ limit: res });
+			this.setState({ limit_id: id });
 		})
 	}
 
@@ -112,6 +115,7 @@ class Provider extends Component {
 		db: undefined,
 		expenses: [],
 		limit: 0,
+		limit_id: undefined,
 		spent: 0,
 		number: 0,
 		photoURL: null,
