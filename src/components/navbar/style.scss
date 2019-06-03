@@ -49,8 +49,14 @@
 	}
 
 	.user {
-		img {
-			height: 200px;
+		.img-container {
+			margin: 0 auto;
+			text-align: center;
+			
+			img {
+				height: 200px;
+				width: 200px;
+			}
 		}
 	}
 

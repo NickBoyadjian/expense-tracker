@@ -53,7 +53,7 @@ export default class Settings extends Component {
 	        	{(context) => (
 	        		<div className="user">
 	        			<div className="img-container">
-	        				<img src={context.state.photoURL} />	
+	        				<img src={context.state.photoURL} alt="" />	
 	        			</div>
 	        			{
 	        				context.state.isGoogleUser

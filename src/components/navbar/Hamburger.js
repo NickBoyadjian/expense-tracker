@@ -8,16 +8,15 @@ export default props =>
 		</div>
 
 		<div className="user">
-			<img src={props.context.state.photoURL} alt='' />
+			<div className="img-container">
+				<img src={props.context.state.photoURL} alt='' />
+			</div>
 			<h1>{props.context.state.email}</h1>
 		</div>
 
 		<div className="navigate">
 			<Link to="/" className="nav-item">
 				Dashboard
-			</Link>
-			<Link to="/stats" className="nav-item">
-				Statistics
 			</Link>
 			<Link to="/settings" className="nav-item">
 				Settings
