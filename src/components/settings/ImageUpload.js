@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import ImageUploader from 'react-images-upload';
 import app from '../../base';
-import { Context } from '../../context';
+import { Context } from '../../context'
 
 
 export default class ImageUpload extends Component {
-	constructor(props) {
-		super(props);
-	}
 
   onDrop = picture => {
 		// Create a Storage Ref w/ username
-		var storageRef = app.storage().ref(this.context.state.user_id + '/profilePicture/' + "profilepic.jpg");
+		var storageRef = app.storage().ref(this.context.state.user_id + '/profilePicture/profilepic.jpg');
 		// Upload file
 		var task = storageRef.put(picture[0])
 			.then(e => {
@@ -34,3 +31,4 @@ export default class ImageUpload extends Component {
 		</div>
 }
 ImageUpload.contextType = Context
+

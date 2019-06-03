@@ -101,6 +101,7 @@ class AddLimit extends Component {
 	          <input 
 	          	className="input" 
 	          	type="number"
+	          	step="any"
 	          	pattern="\d*"
 	          	placeholder="Limit"
 	          	onChange={this.handleAmountChange.bind(this)} 

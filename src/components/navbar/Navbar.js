@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import app from '../../base';
 import HamburgerMenu from './Hamburger';
 import { Context } from '../../context';
 import './style.scss';
 
-export default class Navbar extends React.Component {
+export default class Navbar extends Component {
 	constructor(props) {
     super(props);
     this.state = {

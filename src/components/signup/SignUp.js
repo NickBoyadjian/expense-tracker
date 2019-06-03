@@ -10,7 +10,6 @@ class SignUpPage extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-    	username: '',
     	email: '',
     	password: '',
     	passwordConfirmation: '',
@@ -20,7 +19,11 @@ class SignUpPage extends React.Component {
 
   onSubmit = async e => {
     e.preventDefault();
-    const { email, password } = e.target.elements;
+    const { email, password, passwordConfirmation } = e.target.elements;
+    if (passwordConfirmation.value != password.value) {
+    	this.setState({error: "Passwords must match"});
+    	return;
+    }
     try {
       const user = await app
         .auth()
@@ -32,7 +35,6 @@ class SignUpPage extends React.Component {
     }
   }
 
-  onUsernameChange = e => { this.setState({username: e.target.value}) }
   onEmailChange = e => { this.setState({email: e.target.value}) }
   onPwChange = e => { this.setState({password: e.target.value}) }
   onPwConfirmationChange = e => { this.setState({passwordConfirmation: e.target.value}) }
@@ -44,19 +46,6 @@ class SignUpPage extends React.Component {
 				<div className="material auth-form">
 					<h1 className="title">Create Account</h1>
 					<form className="field" onSubmit={this.onSubmit.bind(this)}>
-
-					  <p className="control has-icons-left has-icons-right">
-					  	<input
-					  		className="input"
-					  		type="text"
-					  		onChange={this.onUsernameChange.bind(this)}
-					  		value={this.state.username}
-					  		placeholder="Username"
-					  	/>
-					    <span className="icon is-small is-left">
-					      <i className="fa fa-user"></i>
-					    </span>
-					  </p>
 
 					  <p className="control has-icons-left has-icons-right">
 					  	<input

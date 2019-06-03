@@ -52,7 +52,9 @@ export default class Settings extends Component {
 				<Context.Consumer>
 	        	{(context) => (
 	        		<div className="user">
-	        			<img src={context.state.photoURL} />
+	        			<div className="img-container">
+	        				<img src={context.state.photoURL} />	
+	        			</div>
 	        			{
 	        				context.state.isGoogleUser
 	        					? ""
@@ -69,6 +71,7 @@ export default class Settings extends Component {
 	        				<h1 className="header">Set new weekly limit: </h1>
 			        		<input 
 			        			type="number" 
+			        			step="any"
 			        			pattern="\d*"
 			        			value={this.state.limit}
 			        			onChange={this.handleUpdateLimit.bind(this)}

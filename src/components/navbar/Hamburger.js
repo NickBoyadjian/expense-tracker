@@ -8,7 +8,7 @@ export default props =>
 		</div>
 
 		<div className="user">
-			<img src={props.context.state.photoURL} />
+			<img src={props.context.state.photoURL} alt='' />
 			<h1>{props.context.state.email}</h1>
 		</div>
 
