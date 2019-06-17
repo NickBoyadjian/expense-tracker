@@ -82,7 +82,7 @@ class Provider extends Component {
 			let spent = 0;
 			expenses.forEach(doc => {
 				res.push({...doc.data(), ...{id: doc.id}})
-				spent += parseInt(doc.data().amount)
+				spent += parseFloat(doc.data().amount)
 			})
 			this.setState({ expenses: res.sort((a, b) => a.created < b.created) });
 			this.setState({ spent: spent })
