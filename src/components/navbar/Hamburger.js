@@ -18,6 +18,9 @@ export default props =>
 			<Link to="/" className="nav-item">
 				Dashboard
 			</Link>
+			<Link to="/expenses" className="nav-item">
+				Expenses
+			</Link>
 			<Link to="/settings" className="nav-item">
 				Settings
 			</Link>

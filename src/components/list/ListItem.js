@@ -12,6 +12,11 @@ export default class ListItem extends Component {
 	initiateDelete = _ => { this.setState({showConfirm: true}) }
 
 	hideDelete = _ => { this.setState({showConfirm: false}) }
+
+	getFormatedDate = input => {
+		let date = new Date(input).toString()
+		return date.substring(3, 15)
+	}
 	
 	render = _ => 
 		<div className="list_item">
@@ -37,6 +42,7 @@ export default class ListItem extends Component {
 					</a>
 				</div>
 			</div>
+			<p>{this.getFormatedDate(this.props.data.created)}</p>
 		</div>
 }
 ListItem.contextType = Context

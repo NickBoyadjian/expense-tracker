@@ -52,19 +52,18 @@ class Provider extends Component {
 		})
 	}
 
-	// GET LAST 5
+	// GET ALL EXPENSES
 	getExpenses = _ => {
 		let data = app.firestore()
 			.collection("expenses")
 			.where("user_id", "==", app.auth().Qb.O)
-			.limit(5)
 
 		data.onSnapshot(expenses => {
 			let res = []
 			expenses.forEach(doc => {
 				res.push({...doc.data(), ...{id: doc.id}})
 			})
-			this.setState({ expenses: res.sort((a, b) => a.created < b.created) });
+			this.setState({ allExpenses: res.sort((a, b) => a.created < b.created) });
 		})
 	}
 
@@ -114,6 +113,7 @@ class Provider extends Component {
 		user_id: undefined,
 		db: undefined,
 		expenses: [],
+		allExpenses: [],
 		limit: 0,
 		limit_id: undefined,
 		spent: 0,

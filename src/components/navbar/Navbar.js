@@ -17,7 +17,7 @@ export default class Navbar extends Component {
 	handleLogOut = async e => {
 		try {
 		  await app.auth().signOut();
-		} catch (e){
+		} catch (e) {
 			console.log(e)
 		}
 	}
@@ -60,6 +60,21 @@ export default class Navbar extends Component {
 			              </span>
 			              <span>
 			                Dashboard
+			              </span>
+			            </Link>
+			          </p>
+			        </div>
+			      </div>
+
+						<div className="navbar-item">
+			        <div className="field is-grouped">
+			          <p className="control">
+			            <Link to="/expenses" className="button">
+			              <span className="icon">
+			                <i className="fa fa-folder-open"></i>
+			              </span>
+			              <span>
+			                Expenses
 			              </span>
 			            </Link>
 			          </p>
